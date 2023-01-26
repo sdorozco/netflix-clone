@@ -1,0 +1,1 @@
+export { default as PruebaPage } from './PruebaPage';
