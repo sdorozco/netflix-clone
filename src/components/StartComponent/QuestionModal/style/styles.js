@@ -22,4 +22,5 @@ export const styles = StyleSheet.create({
     containerScroll: {
         width: '100%',
     },
-})
+// eslint-disable-next-line eol-last
+});

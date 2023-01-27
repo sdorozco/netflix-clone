@@ -1,5 +1,4 @@
-import { Dimensions, StyleSheet } from 'react-native';
-const { width } = Dimensions.get('window');
+import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     background: {
         backgroundColor: 'white',
@@ -30,4 +29,5 @@ export const styles = StyleSheet.create({
         fontSize: 19,
         marginBottom: '10%',
     },
-})
+// eslint-disable-next-line eol-last
+});

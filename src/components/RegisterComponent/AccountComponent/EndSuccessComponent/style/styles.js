@@ -20,4 +20,5 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         marginVertical: 30,
     },
-})
+// eslint-disable-next-line eol-last
+});

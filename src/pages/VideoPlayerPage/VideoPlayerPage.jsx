@@ -1,26 +1,25 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
-import { View, Dimensions } from 'react-native';
-import VideoPlayer from 'react-native-video-controls';
+import { useRoute } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import { WebView } from 'react-native-webview';
 import { styles } from './style';
 
 const VideoPlayerPage = () => {
-	const navigation = useNavigation();
-	const { height } = Dimensions.get('window');
-	const [ancho, setAncho] = useState('100%');
-	const lanscape = () => {
-		setAncho(Dimensions.get('window').width);
-	}
-	return (
-		<View style={styles.container}>
-			<VideoPlayer
-				source={require('@/video/video.mp4')}
-				onBack={() => navigation.goBack()}
-				style={{ width: ancho, height: height }}
-				onEnterFullscreen={() => lanscape()}
-			/>
-		</View>
-	);
+  const router = useRoute();
+  const url = router.params.video;
+  const html = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${url}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowfullscreen></iframe>`;
+  const [vi, setVi] = useState(true);
+
+  return (
+    <View style={styles.container} >
+      <WebView
+        javaScriptEnabled
+        source={{html: html}}
+        onLoadStart={() => setVi(!vi)}
+        style={styles.video}
+      />
+    </View>
+  );
 };
 
 export default VideoPlayerPage;

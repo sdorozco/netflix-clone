@@ -7,7 +7,7 @@ const HeaderComponent = ({ sesion }) => {
 	const navigation = useNavigation();
 	return (
 		<View style={styles.header}>
-			<Image style={styles.image} source={require("@/assets/Netflix-logo.png")} />
+			<Image style={styles.image} source={require('@/assets/Netflix-logo.png')} />
 			<TouchableOpacity onPress={() => navigation.navigate('Help')}>
 				<Text style={styles.text}>AYUDA</Text>
 			</TouchableOpacity>

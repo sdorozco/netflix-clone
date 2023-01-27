@@ -1,5 +1,5 @@
-import { Dimensions, StyleSheet } from "react-native";
-const { width } = Dimensions.get('window')
+import { Dimensions, StyleSheet } from 'react-native';
+const { width } = Dimensions.get('window');
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -68,4 +68,5 @@ export const styles = StyleSheet.create({
         textAlign: 'left',
         width: '100%',
     },
+// eslint-disable-next-line semi
 })

@@ -24,4 +24,5 @@ export const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'justify',
     },
-})
+// eslint-disable-next-line eol-last
+});

@@ -1,27 +1,22 @@
-import data from "@/data/data";
-import {useNavigation} from "@react-navigation/native";
-import React, {useEffect, useState} from "react";
+import data from '@/data/data';
+import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
 import {
   FlatList,
   Image,
   Text,
   TouchableWithoutFeedback,
   View,
-  VirtualizedList,
-} from "react-native";
-import {Api} from "../../../services/api";
-import {styles} from "./style";
+} from 'react-native';
+import { Api } from '../../../services/api';
+import { styles } from './style';
 
 const List = ({genero}) => {
   const navigator = useNavigation();
   const [dataBackend, setDataBackend] = useState({});
-  const getItemCount = info => dataBackend.length;
 
   const newPushContent = item => {
-    navigator.navigate("Detail", {data: item});
-  };
-  const getItem = (info, index) => {
-    return {id: index, data: info};
+    navigator.navigate('Detail', {data: item});
   };
 
   const renderItem = (item, i) => {
@@ -42,22 +37,13 @@ const List = ({genero}) => {
         />
       </TouchableWithoutFeedback>
     );
-    // return (
-    //   <TouchableWithoutFeedback
-    //     onPress={() => newPushContent(item.data[item.id])}>
-    //     <Image
-    //       key={item.id}
-    //       style={styles.image}
-    //       source={{uri: item.data ? item.data[item.id]["image"] : ""}}
-    //     />
-    //   </TouchableWithoutFeedback>
-    // );
   };
   const userApi = () => {
     Api('shows', 'get')
       .then(response => {
         const info = response.data.filter(function (element) {
-         return genero === 'INICIO' ? element : element['details']['genres'][0] === genero;
+         // eslint-disable-next-line dot-notation
+         return genero === 'INICIO' ? element : element['details'].genres[0] === genero;
         });
         setDataBackend(info);
       })
@@ -67,6 +53,7 @@ const List = ({genero}) => {
   };
   useEffect(() => {
     userApi();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [genero]);
 
   return (
@@ -82,19 +69,7 @@ const List = ({genero}) => {
       </View>
       <View>
         <Text style={styles.text}>{genero === 'INICIO' ? 'My Top List' : genero}</Text>
-        {/* <VirtualizedList
-          data={dataBackend}
-          horizontal
-          getItem={getItem}
-          keyExtractor={item => item.id}
-          getItemCount={getItemCount}
-          ItemSeparatorComponent={() => <View style={styles.separator} />}
-          renderItem={({item}, i) => renderItemMovie(item, item.key)}
-        /> */}
         <FlatList
-          getItemLayout={(data, index) => (
-            {length: 10, offset: 10 * index, index}
-          )}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
           renderItem={({item}, i) => renderItemMovie(item, item.key)}
           data={dataBackend}

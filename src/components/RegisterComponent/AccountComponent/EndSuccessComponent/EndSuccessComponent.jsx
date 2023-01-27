@@ -11,7 +11,6 @@ const EndSuccessComponent = () => {
 			navigation.navigate('Home');
 		}, 4000);
 	}, [navigation]);
-	
 	return (
 		<View style={styles.container}>
 			<HeaderComponent sesion={true} />

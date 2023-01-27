@@ -73,7 +73,7 @@ export const styles = StyleSheet.create(
         },
         logout:{
             borderTopWidth: 3,
-            borderColor: '#fff',
+            borderColor: '#000',
         },
     }
 );

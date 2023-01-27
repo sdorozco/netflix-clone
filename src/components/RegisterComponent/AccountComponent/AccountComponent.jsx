@@ -24,7 +24,6 @@ const AccountComponent = () => {
 		password: '',
 	});
 	const validate = () => {
-		console.log(inputs);
 		Keyboard.dismiss();
 		let isValid = true;
 		if (inputs.password.length <= 5 || inputs.password.length === 0) {

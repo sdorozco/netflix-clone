@@ -29,4 +29,5 @@ export const styles = StyleSheet.create({
     containerLoading: {
         marginTop: 30,
     },
-})
+// eslint-disable-next-line eol-last
+});

@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 export const styles = StyleSheet.create(
     {
         input: {
@@ -41,7 +41,7 @@ export const styles = StyleSheet.create(
             width: '25%',
         },
         containerButton: {
-
+            right:5,
         },
         textCancel: {
             color: 'white',
@@ -57,8 +57,7 @@ export const styles = StyleSheet.create(
             marginHorizontal: 5,
         },
         image: {
-            marginRight: 5,
-            width: 115,
+            width: '33%',
             height: 170,
         },
         wrapperStyle: {
@@ -66,4 +65,5 @@ export const styles = StyleSheet.create(
             marginLeft: 5,
         },
     }
-)
+// eslint-disable-next-line eol-last
+);

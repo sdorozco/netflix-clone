@@ -1,18 +1,19 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     text: {
-        color: "white",
-        margin: 5
+        color: 'white',
+        margin: 5,
     },
     image: {
-        width: 120,
-        height: 180
+        width: 112,
+        height: 180,
     },
     container: {
-        flex: 1
+        flex: 1,
     },
     separator: {
-        width: 5
-    }
-})
+        width: 5,
+    },
+// eslint-disable-next-line eol-last
+});

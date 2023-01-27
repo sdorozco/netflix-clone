@@ -62,11 +62,11 @@ const Menu = ({selectedMenu, value,toggle}) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={
-            value === "INICIO"
+            value === 'INICIO'
               ? [styles.items, styles.itemsSelected]
               : [styles.items]
           }
-          onPress={() => selectedMenu("INICIO")}>
+          onPress={() => selectedMenu('INICIO')}>
           <Text style={styles.text}>Inicio</Text>
         </TouchableOpacity>
         <TouchableOpacity

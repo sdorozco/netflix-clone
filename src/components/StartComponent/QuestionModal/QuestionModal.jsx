@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-import { ScrollView, View } from 'react-native';
-import { Provider, Portal, Modal, Text } from 'react-native-paper';
-import { styles } from './style';
-import { List } from 'react-native-paper';
 import questions from '@/data/questions.js';
+import React, { useState } from 'react';
+import { ScrollView } from 'react-native';
+import { List, Modal, Portal, Provider, Text } from 'react-native-paper';
+import { styles } from './style';
 
 const QuestionModal = ({ hideModal, visibleModal }) => {
 	const [expanded, setExpanded] = useState(true);
 
-	const handlePress = () => setExpanded(!expanded);
+	// const handssslePress = () => setExpanded(!expanded);
 	return (
 		<Provider>
 			<Portal>
@@ -30,11 +29,6 @@ const QuestionModal = ({ hideModal, visibleModal }) => {
 				</Modal>
 			</Portal>
 		</Provider>
-		// <View>
-		// 	{
-		// 		console.log(hideModal)
-		// 	}
-		// </View>
 	);
 };
 

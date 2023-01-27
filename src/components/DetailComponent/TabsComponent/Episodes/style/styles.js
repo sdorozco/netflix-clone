@@ -1,6 +1,4 @@
-import { Dimensions, StyleSheet } from "react-native";
-
-const { width, height } = Dimensions.get('screen');
+import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     container: {
         marginHorizontal: 10,
@@ -44,4 +42,5 @@ export const styles = StyleSheet.create({
         width:'100%',
         fontSize:12,
     },
+// eslint-disable-next-line eol-last
 })

@@ -144,4 +144,5 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
       },
+// eslint-disable-next-line eol-last
 });

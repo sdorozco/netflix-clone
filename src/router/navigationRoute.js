@@ -18,7 +18,7 @@ const Stack = createNativeStackNavigator();
 const NavigationRoute = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SplashScreen">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Home"
           component={HomePage}
@@ -37,7 +37,7 @@ const NavigationRoute = () => {
         <Stack.Screen
           name="VideoPlayer"
           component={VideoPlayerPage}
-          options={{headerShown: false, orientation: 'landscape'}}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name="Start"

@@ -30,9 +30,13 @@ export const styles = StyleSheet.create({
     },
     containerQuestion: {
         flex: 1,
-        justifyContent: "center",
+        justifyContent: 'center',
     },
     buttonStyle: {
         borderRadius: 0,
     },
+    linear:{
+        height: 45,
+    },
+// eslint-disable-next-line eol-last
 });

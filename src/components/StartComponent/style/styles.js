@@ -8,4 +8,5 @@ export const styles = StyleSheet.create({
     containerGradient: {
         backgroundColor: 'transparent',
     },
-})
+// eslint-disable-next-line eol-last
+});

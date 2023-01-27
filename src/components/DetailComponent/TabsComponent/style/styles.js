@@ -6,4 +6,5 @@ export const styles = StyleSheet.create({
         borderTopWidth: 2,
         borderColor: 'black',
     },
+// eslint-disable-next-line eol-last
 });

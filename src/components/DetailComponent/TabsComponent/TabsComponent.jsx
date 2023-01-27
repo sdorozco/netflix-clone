@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dimensions, ScrollView } from 'react-native';
+import { Dimensions } from 'react-native';
 import { SceneMap, TabView } from 'react-native-tab-view';
 import Episodes from './Episodes/Episodes';
 import { styles } from './style';
@@ -28,7 +28,7 @@ const TabsComponent = ({ episodes }) => {
 				1: FirstRoute,
 				2: SecondRoute,
 			})}
-			overScrollMode='always'
+			overScrollMode="always"
 			initialLayout={{ width: Dimensions.get('window').width }}
 		/>
 	);

@@ -1,6 +1,6 @@
-import { removeHtmlTags } from '@/utilities/lib';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import React, { useEffect, useRef, useState } from 'react';
+import {removeHtmlTags} from '@/utilities/lib';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Animated,
   ImageBackground,
@@ -13,7 +13,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import SelectDropdown from 'react-native-select-dropdown';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import IonIcons from 'react-native-vector-icons/Ionicons';
-import { styles } from './style';
+import { Api } from '../../services/api';
+import {styles} from './style';
 import Episodes from './TabsComponent/Episodes/Episodes';
 
 const DetailComponent = () => {
@@ -23,18 +24,26 @@ const DetailComponent = () => {
   const description = removeHtmlTags(data.details?.description);
   const numEpisodes = data.details?.episodes.length;
   const season = data.details?.episodes[numEpisodes - 1].season;
-
+  const [video,setVideo] = useState(require('@/video/video.mp4'));
   const [measures, setMeasures] = useState(0);
   const [measuresSeason, setMeasuresSeason] = useState(0);
   const scrollY = useRef(new Animated.Value(0)).current;
   const [selectSeason, setSelectSeason] = useState(0);
   const seasonCount = useState([]);
+  const serviceVideo = () =>{
+		Api('/search/' + data.name + ' Thriller','get').then(res=>{
+      // eslint-disable-next-line dot-notation
+      setVideo(res.data.items[0].id['videoId']);
+		}).catch(err=>{
+			console.log(err);
+		});
+	};
   const onShare = () => {
     Share.share(
       {
-        title: 'Suits',
-        url: 'www.youtube.com',
-        message: 'Serie de TV',
+        title: data.name,
+        url: 'https://www.youtube.com/watch?v=' + video,
+        message: 'https://www.youtube.com/watch?v=' + video + '\n' + description,
       },
       {
         //android
@@ -60,7 +69,10 @@ const DetailComponent = () => {
     }
     return seasonCount;
   };
- 
+ useEffect(() => {
+   serviceVideo();
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ }, []);
   return (
     <View style={styles.containerGlobal}>
       <Animated.View style={[styles.header, {opacity: headerNameToggle}]}>
@@ -82,9 +94,12 @@ const DetailComponent = () => {
             data={countSeason()}
             onSelect={(selectedItem, index) => {
               setSelectSeason(index + 1);
-              console.log(selectedItem, index);
             }}
-            defaultButtonText={selectSeason >= 1 ? seasonCount[selectSeason - 1] : seasonCount[selectSeason]}
+            defaultButtonText={
+              selectSeason >= 1
+                ? seasonCount[selectSeason - 1]
+                : seasonCount[selectSeason]
+            }
             buttonTextAfterSelection={(selectedItem, index) => {
               // text represented after item is selected
               // if data array is an array of objects then return selectedItem.property to render after item is selected
@@ -135,7 +150,7 @@ const DetailComponent = () => {
             </View>
             <View style={styles.buttonPlay}>
               <TouchableOpacity
-                onPress={() => navigation.navigate('VideoPlayer')}>
+                onPress={() => navigation.navigate('VideoPlayer',{video:video})}>
                 <View>
                   <Icon
                     name="play-circle"
@@ -187,44 +202,51 @@ const DetailComponent = () => {
             </TouchableOpacity>
           </View>
         </View>
-        <View onLayout={({nativeEvent}) => {
+        <View
+          onLayout={({nativeEvent}) => {
             setMeasuresSeason(nativeEvent.layout.y);
           }}>
-            <SelectDropdown
-              data={countSeason()}
-              onSelect={(selectedItem, index) => {
-                setSelectSeason(index + 1);
-                console.log(selectedItem, index);
-              }}
-              defaultButtonText={selectSeason >= 1 ? seasonCount[selectSeason - 1] : seasonCount[selectSeason]}
-              buttonTextAfterSelection={(selectedItem, index) => {
-                // text represented after item is selected
-                // if data array is an array of objects then return selectedItem.property to render after item is selected
-                return selectedItem;
-              }}
-              rowTextForSelection={(item, index) => {
-                // text represented for each item in dropdown
-                // if data array is an array of objects then return item.property to represent item in dropdown
-                return item;
-              }}
-              buttonStyle={styles.dropdown2BtnStyle}
-              buttonTextStyle={styles.dropdown2BtnTxtStyle}
-              renderDropdownIcon={isOpened => {
-                return (
-                  <Icon
-                    name={isOpened ? 'chevron-up' : 'chevron-down'}
-                    color={'#FFF'}
-                    size={18}
-                  />
-                );
-              }}
-              dropdownIconPosition={'right'}
-              dropdownStyle={styles.dropdown2DropdownStyle}
-              rowStyle={styles.dropdown2RowStyle}
-              rowTextStyle={styles.dropdown2RowTxtStyle}
-            />
+          <SelectDropdown
+            data={countSeason()}
+            onSelect={(selectedItem, index) => {
+              setSelectSeason(index + 1);
+            }}
+            defaultButtonText={
+              selectSeason >= 1
+                ? seasonCount[selectSeason - 1]
+                : seasonCount[selectSeason]
+            }
+            buttonTextAfterSelection={(selectedItem, index) => {
+              // text represented after item is selected
+              // if data array is an array of objects then return selectedItem.property to render after item is selected
+              return selectedItem;
+            }}
+            rowTextForSelection={(item, index) => {
+              // text represented for each item in dropdown
+              // if data array is an array of objects then return item.property to represent item in dropdown
+              return item;
+            }}
+            buttonStyle={styles.dropdown2BtnStyle}
+            buttonTextStyle={styles.dropdown2BtnTxtStyle}
+            renderDropdownIcon={isOpened => {
+              return (
+                <Icon
+                  name={isOpened ? 'chevron-up' : 'chevron-down'}
+                  color={'#FFF'}
+                  size={18}
+                />
+              );
+            }}
+            dropdownIconPosition={'right'}
+            dropdownStyle={styles.dropdown2DropdownStyle}
+            rowStyle={styles.dropdown2RowStyle}
+            rowTextStyle={styles.dropdown2RowTxtStyle}
+          />
         </View>
-        <Episodes episodes={data.details?.episodes} season={selectSeason >= 1 ? selectSeason : 1} />
+        <Episodes
+          episodes={data.details?.episodes}
+          season={selectSeason >= 1 ? selectSeason : 1}
+        />
       </Animated.ScrollView>
     </View>
   );

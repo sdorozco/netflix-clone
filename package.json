@@ -6,6 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
+    "ori": "react-native link react-native-orientation",
     "test": "jest",
     "lint": "eslint ."
   },
@@ -16,6 +17,8 @@
     "@react-navigation/native-stack": "^6.9.7",
     "@reduxjs/toolkit": "^1.9.1",
     "axios": "^1.2.1",
+    "deprecated-react-native-prop-types": "^4.0.0",
+    "patch-package": "^6.5.1",
     "react": "18.1.0",
     "react-native": "0.70.6",
     "react-native-dotenv": "^3.4.7",
@@ -31,6 +34,8 @@
     "react-native-vector-icons": "^9.2.0",
     "react-native-video": "^5.2.1",
     "react-native-video-controls": "^2.8.1",
+    "react-native-webview": "^11.26.0",
+    "react-native-youtube": "^2.0.2",
     "react-redux": "^8.0.5",
     "redux": "^4.2.0"
   },

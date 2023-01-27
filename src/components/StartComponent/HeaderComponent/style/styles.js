@@ -32,4 +32,5 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+// eslint-disable-next-line eol-last
 });

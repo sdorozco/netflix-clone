@@ -61,4 +61,5 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         color: 'black',
     },
+// eslint-disable-next-line eol-last
 })

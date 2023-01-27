@@ -18,6 +18,7 @@ const HomeComponent = () => {
 		setOpen(!isOpen);
 	};
 
+	// eslint-disable-next-line no-shadow
 	const updateMenu = (isOpen) => {
 		setOpen(isOpen);
 	};
@@ -28,14 +29,15 @@ const HomeComponent = () => {
 				overlayColor="black"
 				menu={<Menu selectedMenu={selectItemMenu} value={selectedMenu} toggle={toggle} />}
 				isOpen={isOpen}
+				// eslint-disable-next-line no-shadow
 				onChange={(isOpen) => {
 					updateMenu(isOpen);
 					}}>
-				<View style={style.container}>
+				<ScrollView style={style.container}>
 					<Header toggle={toggle} />
 					<Slider />
 					<List genero={selectedMenu} />
-				</View>
+				</ScrollView>
 			</SideMenu>
 		</View>
 	);
